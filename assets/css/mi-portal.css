@@ -1,0 +1,354 @@
+/* Mi portal · aspecto de Mi cuenta. Todos los valores salen de las variables de abajo, en un solo sitio. */
+
+body.woocommerce-account{
+  --mp-fondo: #F6F5F3;
+  --mp-tarjeta: #FFFFFF;
+  --mp-texto: #0A0A0A;
+  --mp-suave: #6A665F;
+  --mp-borde: #E4E1DA;
+  --mp-acento: #7F8BEC;
+  --mp-acento-fondo: rgba(127, 139, 236, .12);
+  --mp-acento-activo: rgba(127, 139, 236, .18);
+  --mp-acento-fuerte: #6B7AE0;
+  --mp-verde: #1F8A67;
+  --mp-verde-fondo: rgba(45, 189, 142, .16);
+  --mp-naranja: #C46A3B;
+  --mp-naranja-fondo: rgba(249, 140, 89, .18);
+  --mp-rojo: #B33654;
+  --mp-rojo-fondo: rgba(179, 54, 84, .14);
+  --mp-radio: 14px;
+  --mp-radio-chico: 10px;
+  --mp-sombra: 0 1px 2px rgba(10, 10, 10, .04), 0 6px 24px rgba(10, 10, 10, .05);
+  --mp-sombra-alta: 0 10px 40px rgba(10, 10, 10, .12);
+  --mp-cabecera: var(--nav-h, 72px);
+  --mp-letra: var(--font-sans, "Afacad", system-ui, sans-serif);
+  background: var(--mp-fondo);
+}
+
+/* ---------- Estructura: menú a la izquierda, contenido a la derecha ---------- */
+body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation){
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+/* Los ::before y ::after de limpieza de flotantes serían celdas vacías de la rejilla */
+body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation)::before,
+body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation)::after{ display: none; }
+body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation) > .woocommerce-notices-wrapper{ grid-column: 1 / -1; }
+body.woocommerce-account .woocommerce-MyAccount-navigation,
+body.woocommerce-account .woocommerce-MyAccount-content{ float: none; width: auto; }
+
+/* ---------- Letra: la de la web ---------- */
+.mp-nav, body.woocommerce-account .woocommerce-MyAccount-content{ font-family: var(--mp-letra); font-size: var(--fs-base, 18px); line-height: 1.5; }
+
+/* ---------- Contenido en tarjeta ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content{
+  background: var(--mp-tarjeta);
+  border-radius: var(--mp-radio);
+  box-shadow: var(--mp-sombra);
+  padding: 32px;
+  min-height: 60vh;
+  color: var(--mp-texto);
+  overflow-x: auto;
+}
+
+/* ---------- Menú lateral ---------- */
+.mp-nav{
+  position: sticky;
+  top: calc(var(--mp-cabecera) + 24px);
+  max-height: calc(100vh - var(--mp-cabecera) - 48px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--mp-borde) transparent;
+}
+.mp-lista{
+  background: var(--mp-tarjeta);
+  border-radius: var(--mp-radio);
+  box-shadow: var(--mp-sombra);
+  padding: 8px;
+  list-style: none;
+  margin: 0;
+}
+.mp-grupo{
+  padding: 12px 12px 4px;
+  margin: 4px 0 0;
+  font-size: .72em;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--mp-suave);
+  pointer-events: none;
+}
+.mp-grupo:first-child{ margin-top: 0; }
+.mp-lista li:not(.mp-grupo) a{
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--mp-texto);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.mp-lista li:not(.mp-grupo) a::after{
+  content: "→";
+  margin-left: auto;
+  padding-left: 8px;
+  font-size: .8em;
+  opacity: .3;
+  flex-shrink: 0;
+}
+.mp-lista .woocommerce-MyAccount-navigation-link--customer-logout a::after{ content: "×"; font-size: 1em; opacity: .4; }
+.mp-lista li:not(.mp-grupo) a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
+.mp-lista li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
+.mp-lista li:not(.mp-grupo) a:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: -2px; }
+
+/* ---------- Menú desplegable de móvil ---------- */
+.mp-movil{ display: none; }
+.mp-nav .mp-movil__toggle{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 13px 16px;
+  border: 0;
+  border-radius: var(--mp-radio);
+  background: var(--mp-texto);
+  color: #FFFFFF;
+  font: inherit;
+  line-height: 1.3;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  cursor: pointer;
+}
+.mp-nav .mp-movil__toggle:hover, .mp-nav .mp-movil__toggle:focus{ background: var(--mp-texto); color: #FFFFFF; }
+.mp-nav .mp-movil__toggle:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 2px; }
+.mp-nav .mp-movil__toggle::before{
+  content: "Mi cuenta";
+  flex-shrink: 0;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255, 255, 255, .28);
+  font-size: .72em;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+.mp-movil__actual{ flex: 1; font-weight: 500; }
+.mp-movil__flecha{ width: 12px; height: 12px; flex-shrink: 0; transition: transform .2s; }
+.mp-nav .mp-movil__toggle[aria-expanded="true"] .mp-movil__flecha{ transform: rotate(180deg); }
+.mp-movil__panel{
+  margin-top: 6px;
+  overflow: hidden;
+  border-radius: var(--mp-radio);
+  background: var(--mp-tarjeta);
+  box-shadow: var(--mp-sombra-alta);
+}
+.mp-movil__panel[hidden]{ display: none; }
+.mp-movil__grupo{ margin: 0; padding: 12px 16px 4px; font-size: .72em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mp-suave); }
+.mp-movil ul{ list-style: none; margin: 0; padding: 4px 8px 8px; }
+.mp-movil li a{ display: block; padding: 10px; border-radius: 8px; color: var(--mp-texto); text-decoration: none; transition: background .2s, color .2s; }
+.mp-movil li a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
+.mp-movil li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
+
+@media (max-width: 767px){
+  body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation){ grid-template-columns: minmax(0, 1fr); padding: 16px 16px 32px; gap: 16px; }
+  .mp-nav{ position: static; max-height: none; overflow: visible; }
+  .mp-lista{ display: none; }
+  .mp-movil{ display: block; }
+  body.woocommerce-account .woocommerce-MyAccount-content{ padding: 20px; min-height: 0; }
+}
+
+/* ================= Contenido de las pestañas ================= */
+
+/* ---------- Tablas (pedidos, suscripciones, descargas, licencias…) ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table{
+  width: 100%;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: transparent;
+  font-size: .9em;
+}
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table thead th,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table thead th{
+  padding: 12px 16px;
+  border: 0;
+  background: var(--mp-texto);
+  color: #FFFFFF;
+  font-size: .78em;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-align: left;
+  text-transform: uppercase;
+}
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table thead th:first-child{ border-radius: 8px 0 0 8px; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table thead th:last-child{ border-radius: 0 8px 8px 0; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody tr{ border-bottom: 1px solid var(--mp-borde); transition: background .2s; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr:last-child,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody tr:last-child{ border-bottom: 0; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr:hover,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody tr:hover{ background: var(--mp-acento-fondo); }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody td,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody td{ padding: 14px 16px; border: 0; color: var(--mp-texto); vertical-align: middle; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr:nth-child(odd) td,
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr:nth-child(even) td{ background: transparent; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody th,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody th{ padding: 14px 16px; border: 0; background: transparent; color: var(--mp-texto); font-weight: inherit; text-align: left; vertical-align: middle; }
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tfoot th,
+body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tfoot td,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tfoot th,
+body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tfoot td{ padding: 12px 16px; border: 0; border-top: 2px solid var(--mp-borde); font-weight: 600; }
+
+/* ---------- Estado del pedido ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status{
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--mp-borde);
+  color: var(--mp-texto);
+  font-size: .78em;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-completed{ background: var(--mp-verde-fondo); color: var(--mp-verde); }
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-processing{ background: var(--mp-acento-activo); color: var(--mp-acento-fuerte); }
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-on-hold,
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-pending{ background: var(--mp-naranja-fondo); color: var(--mp-naranja); }
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-cancelled,
+body.woocommerce-account .woocommerce-MyAccount-content mark.order-status.status-failed{ background: var(--mp-rojo-fondo); color: var(--mp-rojo); }
+
+/* ---------- Botones del contenido ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content .button,
+body.woocommerce-account .woocommerce-MyAccount-content button[type="submit"],
+body.woocommerce-account .woocommerce-MyAccount-content input[type="submit"]{
+  display: inline-block;
+  padding: 9px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--mp-acento);
+  color: #FFFFFF;
+  font: inherit;
+  font-size: .9em;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s;
+}
+body.woocommerce-account .woocommerce-MyAccount-content .button:hover,
+body.woocommerce-account .woocommerce-MyAccount-content button[type="submit"]:hover,
+body.woocommerce-account .woocommerce-MyAccount-content input[type="submit"]:hover{ background: var(--mp-acento-fuerte); color: #FFFFFF; }
+
+/* ---------- Formularios ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+body.woocommerce-account .woocommerce-MyAccount-content select,
+body.woocommerce-account .woocommerce-MyAccount-content textarea{
+  padding: 10px 14px;
+  border: 1px solid var(--mp-borde);
+  border-radius: var(--mp-radio-chico);
+  background: var(--mp-fondo);
+  color: var(--mp-texto);
+  font: inherit;
+  transition: background .2s, border-color .2s;
+}
+body.woocommerce-account .woocommerce-MyAccount-content input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):focus,
+body.woocommerce-account .woocommerce-MyAccount-content select:focus,
+body.woocommerce-account .woocommerce-MyAccount-content textarea:focus{ outline: 0; border-color: var(--mp-acento); background: var(--mp-acento-fondo); }
+body.woocommerce-account .woocommerce-MyAccount-content label{ color: var(--mp-texto); font-weight: 500; }
+
+/* ---------- Avisos ---------- */
+body.woocommerce-account .woocommerce-message,
+body.woocommerce-account .woocommerce-error,
+body.woocommerce-account .woocommerce-info{
+  margin: 0 0 16px;
+  padding: 14px 18px;
+  border: 0;
+  border-left: 4px solid var(--mp-acento);
+  border-radius: var(--mp-radio-chico);
+  background: var(--mp-tarjeta);
+  color: var(--mp-texto);
+  box-shadow: var(--mp-sombra);
+  list-style: none;
+}
+body.woocommerce-account .woocommerce-error{ border-left-color: var(--mp-rojo); }
+body.woocommerce-account .woocommerce-info{ border-left-color: var(--mp-naranja); }
+body.woocommerce-account .woocommerce-message::before,
+body.woocommerce-account .woocommerce-error::before,
+body.woocommerce-account .woocommerce-info::before{ display: none; }
+body.woocommerce-account .woocommerce-error li{ margin: 0; padding: 0; list-style: none; }
+body.woocommerce-account .woocommerce-message a:not(.button),
+body.woocommerce-account .woocommerce-error a:not(.button),
+body.woocommerce-account .woocommerce-info a:not(.button){ color: var(--mp-acento); font-weight: 600; }
+body.woocommerce-account .woocommerce-message .button,
+body.woocommerce-account .woocommerce-info .button{ float: none; margin-right: 12px; }
+
+@media (max-width: 600px){
+  body.woocommerce-account .woocommerce-MyAccount-content table.shop_table thead,
+  body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table thead{ display: none; }
+  body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody tr,
+  body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody tr{ display: block; margin-bottom: 12px; padding: 8px 0; border: 1px solid var(--mp-borde); border-radius: var(--mp-radio-chico); }
+  body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody td,
+  body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody td{ display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px; border-bottom: 1px solid var(--mp-borde); font-size: .9em; text-align: right; }
+  body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody td:last-child,
+  body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody td:last-child{ border-bottom: 0; }
+  body.woocommerce-account .woocommerce-MyAccount-content table.shop_table tbody td::before,
+  body.woocommerce-account .woocommerce-MyAccount-content table.woocommerce-table tbody td::before{ content: attr(data-title); flex-shrink: 0; color: var(--mp-suave); font-size: .8em; font-weight: 600; letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+}
+
+/* ---------- Tablas en tarjetas: mi-portal.js marca con .mp-tarjetas la tabla cuyo contenido no cabe cómodo (filas muy altas) y cada fila
+   pasa a ser una tarjeta; las columnas se reparten solas según el ancho. Vale para cualquier tabla sin pie. Los títulos salen de data-title. ---------- */
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas{ display: block; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas thead{ display: none; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody{ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 12px; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody tr,
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody tr:last-child{ display: block; margin: 0; padding: 8px 0; border: 1px solid var(--mp-borde); border-radius: var(--mp-radio-chico); }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td{ display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 8px 16px; border-bottom: 1px solid var(--mp-borde); font-size: .9em; text-align: right; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td:last-child{ border-bottom: 0; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td::before{ content: attr(data-title); flex-shrink: 0; color: var(--mp-suave); font-size: .8em; font-weight: 600; letter-spacing: .05em; text-align: left; text-transform: uppercase; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas td code{ overflow-wrap: anywhere; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td:has(> code, > .button){ justify-content: flex-start; text-align: left; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td:has(> code, > .button)::before{ flex-basis: 100%; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td > code{ flex-basis: 100%; }
+
+/* ---------- Escritorio: saludo y tarjetas de entrada ---------- */
+.mp-saludo{ margin: 0 0 28px; }
+.mp-tarjetas{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+.mp-tarjetas li{ margin: 0; padding: 0; list-style: none; }
+.mp-tarjeta{
+  display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+  min-height: 111px; padding: 20px; text-align: center;
+  border-radius: var(--mp-radio); background: var(--mp-tarjeta); border: 0;
+  box-shadow: var(--mp-sombra-alta);
+  color: var(--mp-texto); font-size: inherit; font-weight: 500; letter-spacing: inherit; line-height: 1.5; text-decoration: none;
+  transition: box-shadow .25s;
+}
+body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta,
+body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta:hover,
+body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta:focus{ text-decoration: none; color: var(--mp-texto); }
+.mp-tarjeta:hover, .mp-tarjeta:focus-visible{ box-shadow: none; }
+.mp-tarjeta:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 3px; }
+@media (max-width: 1000px){ .mp-tarjetas{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px){ .mp-tarjetas{ grid-template-columns: 1fr; } }
+
+/* ---------- Cambio de pestaña sin recargar ---------- */
+.mp-cargando{ position: fixed; top: 45vh; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; pointer-events: none; z-index: 10; transform: translateY(-50%); }
+.mp-puntos{ display: flex; gap: 10px; }
+.mp-puntos i{ width: 10px; height: 10px; border-radius: 50%; background: var(--mp-acento); animation: mp-punto 1.2s ease-in-out infinite; }
+.mp-puntos i:nth-child(2){ animation-delay: .15s; }
+.mp-puntos i:nth-child(3){ animation-delay: .3s; }
+.mp-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@keyframes mp-punto{ 0%, 80%, 100%{ opacity: .25; transform: scale(.8); } 40%{ opacity: 1; transform: scale(1.15); } }
+body.woocommerce-account .woocommerce-MyAccount-content.mp-cambiando{ opacity: .5; pointer-events: none; transition: opacity .2s; }
+
+@media (prefers-reduced-motion: reduce){
+  .mp-lista li:not(.mp-grupo) a, .mp-movil li a, .mp-movil__flecha{ transition: none; }
+  .mp-puntos i{ animation: none; opacity: .6; }
+  .mp-tarjeta{ transition: none; }
+}

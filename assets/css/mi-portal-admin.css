@@ -1,0 +1,4 @@
+.mp-admin__tabla{ max-width: 960px; margin-bottom: 16px; }
+.mp-admin__tabla th, .mp-admin__tabla td{ vertical-align: middle; }
+.mp-admin__asa{ width: 24px; cursor: grab; color: #8c8f94; letter-spacing: -3px; user-select: none; }
+.mp-admin__tabla code{ margin-left: 6px; color: #646970; }
