@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build release zip
+        run: |
+          mkdir -p dist/mi-portal
+          rsync -a \
+            --include='mi-portal.php' \
+            --include='uninstall.php' \
+            --include='includes/***' \
+            --include='templates/***' \
+            --include='assets/***' \
+            --include='languages/***' \
+            --exclude='*' \
+            ./ dist/mi-portal/
+          cd dist
+          zip -r mi-portal.zip mi-portal
+
+      - name: Verify release zip
+        run: |
+          test -f dist/mi-portal/mi-portal.php
+          test ! -d dist/mi-portal/.git
+          test ! -d dist/mi-portal/.github
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: dist/mi-portal.zip
