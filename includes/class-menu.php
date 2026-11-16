@@ -66,7 +66,23 @@ class Mi_Portal_Menu
         wp_enqueue_style('mi-portal', MI_PORTAL_URL . 'assets/css/mi-portal.css', [], MI_PORTAL_VERSION);
         wp_enqueue_script('mi-portal', MI_PORTAL_URL . 'assets/js/mi-portal.js', [], MI_PORTAL_VERSION, true);
         wp_localize_script('mi-portal', 'miPortal', [
-            'base' => wp_parse_url(wc_get_page_permalink('myaccount'), PHP_URL_PATH),
+            'base'     => wp_parse_url(wc_get_page_permalink('myaccount'), PHP_URL_PATH),
+            'sinFetch' => self::endpoints_sin_fetch(),
         ]);
+    }
+
+    /**
+     * Slugs de endpoint de Mi cuenta que se abren con recarga completa (su contenido depende de scripts
+     * que se encolan en el pie de página y con el cambio por fetch no llegarían). Hoy: «ver pedido».
+     * Se lee el slug vigente de WooCommerce, que respeta los ajustes y el idioma activo (WPML).
+     * Para añadir otros endpoints: add_filter('mi_portal_endpoints_sin_fetch', fn($slugs) => array_merge($slugs, ['mi-endpoint']));
+     */
+    private static function endpoints_sin_fetch()
+    {
+        $vars  = WC()->query->get_query_vars();
+        $slugs = ! empty($vars['view-order']) ? [$vars['view-order']] : [];
+        $slugs = apply_filters('mi_portal_endpoints_sin_fetch', $slugs);
+
+        return array_values(array_filter(array_map('strval', (array) $slugs)));
     }
 }

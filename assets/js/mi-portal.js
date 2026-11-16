@@ -55,6 +55,16 @@
   var limpia = function (u) { return u.split('?')[0].replace(/\/$/, ''); };
   var PROHIBIDOS = ['cancel_order', 'wc-ajax', 'add-to-cart', 'wc_order_attribution', 'pay_for_order', 'order_again', 'download_file', 'subscription_renewal', 'reactivate', 'do_action', 'customer-logout', '_wpnonce'];
 
+  // Endpoints (slugs que llegan desde PHP en cfg.sinFetch) que se abren con recarga completa: ruta tras la base o parámetro de la URL.
+  function sinFetch(url) {
+    var lista = cfg.sinFetch || [];
+    if (!lista.length) { return false; }
+    var tramo = url.pathname.slice((cfg.base || '').length).replace(/^\/+/, '').split('/')[0];
+    try { tramo = decodeURIComponent(tramo); } catch (e) {}
+    for (var i = 0; i < lista.length; i++) { if (tramo === lista[i] || url.searchParams.has(lista[i])) { return true; } }
+    return false;
+  }
+
   function esSegura(a) {
     if (!a || !a.href || a.target === '_blank' || a.hasAttribute('download')) { return false; }
     var url;
@@ -62,6 +72,7 @@
     if (url.host !== location.host || (cfg.base && url.pathname.indexOf(cfg.base) !== 0)) { return false; }
     if (['pdf', 'zip', 'docx', 'xlsx', 'png', 'jpg', 'jpeg'].indexOf(url.pathname.split('.').pop().toLowerCase()) > -1) { return false; }
     for (var i = 0; i < PROHIBIDOS.length; i++) { if (a.href.indexOf(PROHIBIDOS[i]) > -1) { return false; } }
+    if (sinFetch(url)) { return false; }
     return !a.closest('form');
   }
 
@@ -136,7 +147,13 @@
     var c = document.querySelector(CONTENIDO);
     if (c) { c.addEventListener('click', alPulsar); }
     history.replaceState({ miPortal: location.href }, '', location.href);
-    addEventListener('popstate', function (e) { if (e.state && e.state.miPortal) { cargar(e.state.miPortal, false); } });
+    addEventListener('popstate', function (e) {
+      if (!e.state || !e.state.miPortal) { return; }
+      var destino;
+      try { destino = new URL(e.state.miPortal, location.href); } catch (err) { destino = null; }
+      if (destino && sinFetch(destino)) { location.reload(); return; }
+      cargar(e.state.miPortal, false);
+    });
     marcarActiva(location.href);
   }
 })();
