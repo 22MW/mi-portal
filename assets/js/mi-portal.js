@@ -27,7 +27,8 @@
       t.classList.remove('mp-tarjetas');
       var desborda = t.offsetWidth > ancho + 1;
       var apretada = [].some.call(t.querySelectorAll('tbody tr'), function (tr) { return tr.getBoundingClientRect().height > 150; });
-      t.classList.toggle('mp-tarjetas', desborda || apretada);
+      var estrecha = ancho < 700; // en cajas estrechas todas las tablas (Pedidos, Reservas…) pasan a tarjetas, para que se vean igual
+      t.classList.toggle('mp-tarjetas', desborda || apretada || estrecha);
     });
   }
   var temporizador;

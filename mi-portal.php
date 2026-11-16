@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Mi portal
  * Description: Pone una capa cuidada a la página Mi cuenta de WooCommerce: menú agrupado, tarjetas, menú desplegable en móvil y cambio de pestaña sin recargar. No añade pestañas ni funciones; solo cambia el aspecto y permite ordenar, ocultar y renombrar las que ya existen.
- * Version: 1.2.4
+ * Version: 1.2.5
  * Author: 22MW
  * Text Domain: mi-portal
  * Domain Path: /languages
@@ -12,7 +12,7 @@
 
 defined('ABSPATH') || exit;
 
-define('MI_PORTAL_VERSION', '1.2.4');
+define('MI_PORTAL_VERSION', '1.2.5');
 define('MI_PORTAL_DIR', plugin_dir_path(__FILE__));
 define('MI_PORTAL_URL', plugin_dir_url(__FILE__));
 

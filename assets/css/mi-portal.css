@@ -44,7 +44,7 @@ body.woocommerce-account .woocommerce-MyAccount-navigation,
 body.woocommerce-account .woocommerce-MyAccount-content{ float: none; width: auto; }
 
 /* ---------- Letra: la de la web ---------- */
-.mp-nav, body.woocommerce-account .woocommerce-MyAccount-content{ font-family: var(--mp-letra); font-size: var(--fs-base, 18px); line-height: 1.5; }
+body.woocommerce-account .mp-nav, body.woocommerce-account .woocommerce-MyAccount-content{ font-family: var(--mp-letra); font-size: var(--fs-base, 18px); line-height: 1.5; }
 
 /* ---------- Contenido en tarjeta ---------- */
 body.woocommerce-account .woocommerce-MyAccount-content{
@@ -58,7 +58,7 @@ body.woocommerce-account .woocommerce-MyAccount-content{
 }
 
 /* ---------- Menú lateral ---------- */
-.mp-nav{
+body.woocommerce-account .mp-nav{
   position: sticky;
   top: calc(var(--mp-cabecera) + 24px);
   max-height: calc(100vh - var(--mp-cabecera) - 48px);
@@ -66,7 +66,7 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   scrollbar-width: thin;
   scrollbar-color: var(--mp-borde) transparent;
 }
-.mp-lista{
+body.woocommerce-account .mp-lista{
   background: var(--mp-tarjeta);
   border-radius: var(--mp-radio);
   box-shadow: var(--mp-sombra);
@@ -74,7 +74,7 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   list-style: none;
   margin: 0;
 }
-.mp-grupo{
+body.woocommerce-account .mp-grupo{
   padding: 12px 12px 4px;
   margin: 4px 0 0;
   font-size: .72em;
@@ -83,8 +83,8 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   color: var(--mp-suave);
   pointer-events: none;
 }
-.mp-grupo:first-child{ margin-top: 0; }
-.mp-lista li:not(.mp-grupo) a{
+body.woocommerce-account .mp-grupo:first-child{ margin-top: 0; }
+body.woocommerce-account .mp-lista li:not(.mp-grupo) a{
   display: flex;
   align-items: center;
   padding: 10px 14px;
@@ -93,7 +93,7 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   text-decoration: none;
   transition: background .2s, color .2s;
 }
-.mp-lista li:not(.mp-grupo) a::after{
+body.woocommerce-account .mp-lista li:not(.mp-grupo) a::after{
   content: "→";
   margin-left: auto;
   padding-left: 8px;
@@ -101,14 +101,14 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   opacity: .3;
   flex-shrink: 0;
 }
-.mp-lista .woocommerce-MyAccount-navigation-link--customer-logout a::after{ content: "×"; font-size: 1em; opacity: .4; }
-.mp-lista li:not(.mp-grupo) a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
-.mp-lista li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
-.mp-lista li:not(.mp-grupo) a:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: -2px; }
+body.woocommerce-account .mp-lista .woocommerce-MyAccount-navigation-link--customer-logout a::after{ content: "×"; font-size: 1em; opacity: .4; }
+body.woocommerce-account .mp-lista li:not(.mp-grupo) a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
+body.woocommerce-account .mp-lista li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
+body.woocommerce-account .mp-lista li:not(.mp-grupo) a:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: -2px; }
 
 /* ---------- Menú desplegable de móvil ---------- */
-.mp-movil{ display: none; }
-.mp-nav .mp-movil__toggle{
+body.woocommerce-account .mp-movil{ display: none; }
+body.woocommerce-account .mp-nav .mp-movil__toggle{
   display: flex;
   align-items: center;
   gap: 10px;
@@ -126,9 +126,9 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   letter-spacing: normal;
   cursor: pointer;
 }
-.mp-nav .mp-movil__toggle:hover, .mp-nav .mp-movil__toggle:focus{ background: var(--mp-texto); color: #FFFFFF; }
-.mp-nav .mp-movil__toggle:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 2px; }
-.mp-nav .mp-movil__toggle::before{
+body.woocommerce-account .mp-nav .mp-movil__toggle:hover, body.woocommerce-account .mp-nav .mp-movil__toggle:focus{ background: var(--mp-texto); color: #FFFFFF; }
+body.woocommerce-account .mp-nav .mp-movil__toggle:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 2px; }
+body.woocommerce-account .mp-nav .mp-movil__toggle::before{
   content: "Mi cuenta";
   flex-shrink: 0;
   padding-right: 10px;
@@ -139,28 +139,28 @@ body.woocommerce-account .woocommerce-MyAccount-content{
   text-transform: uppercase;
   opacity: .6;
 }
-.mp-movil__actual{ flex: 1; font-weight: 500; }
-.mp-movil__flecha{ width: 12px; height: 12px; flex-shrink: 0; transition: transform .2s; }
-.mp-nav .mp-movil__toggle[aria-expanded="true"] .mp-movil__flecha{ transform: rotate(180deg); }
-.mp-movil__panel{
+body.woocommerce-account .mp-movil__actual{ flex: 1; font-weight: 500; }
+body.woocommerce-account .mp-movil__flecha{ width: 12px; height: 12px; flex-shrink: 0; transition: transform .2s; }
+body.woocommerce-account .mp-nav .mp-movil__toggle[aria-expanded="true"] .mp-movil__flecha{ transform: rotate(180deg); }
+body.woocommerce-account .mp-movil__panel{
   margin-top: 6px;
   overflow: hidden;
   border-radius: var(--mp-radio);
   background: var(--mp-tarjeta);
   box-shadow: var(--mp-sombra-alta);
 }
-.mp-movil__panel[hidden]{ display: none; }
-.mp-movil__grupo{ margin: 0; padding: 12px 16px 4px; font-size: .72em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mp-suave); }
-.mp-movil ul{ list-style: none; margin: 0; padding: 4px 8px 8px; }
-.mp-movil li a{ display: block; padding: 10px; border-radius: 8px; color: var(--mp-texto); text-decoration: none; transition: background .2s, color .2s; }
-.mp-movil li a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
-.mp-movil li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
+body.woocommerce-account .mp-movil__panel[hidden]{ display: none; }
+body.woocommerce-account .mp-movil__grupo{ margin: 0; padding: 12px 16px 4px; font-size: .72em; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--mp-suave); }
+body.woocommerce-account .mp-movil ul{ list-style: none; margin: 0; padding: 4px 8px 8px; }
+body.woocommerce-account .mp-movil li a{ display: block; padding: 10px; border-radius: 8px; color: var(--mp-texto); text-decoration: none; transition: background .2s, color .2s; }
+body.woocommerce-account .mp-movil li a:hover{ background: var(--mp-acento-fondo); color: var(--mp-acento); }
+body.woocommerce-account .mp-movil li.is-active > a{ background: var(--mp-acento-activo); color: var(--mp-acento); font-weight: 600; }
 
 @media (max-width: 767px){
   body.woocommerce-account .woocommerce:has(> .woocommerce-MyAccount-navigation){ grid-template-columns: minmax(0, 1fr); padding: 16px 16px 32px; gap: 16px; }
-  .mp-nav{ position: static; max-height: none; overflow: visible; }
-  .mp-lista{ display: none; }
-  .mp-movil{ display: block; }
+  body.woocommerce-account .mp-nav{ position: static; max-height: none; overflow: visible; }
+  body.woocommerce-account .mp-lista{ display: none; }
+  body.woocommerce-account .mp-movil{ display: block; }
   body.woocommerce-account .woocommerce-MyAccount-content{ padding: 20px; min-height: 0; }
 }
 
@@ -246,6 +246,14 @@ body.woocommerce-account .woocommerce-MyAccount-content .button:hover,
 body.woocommerce-account .woocommerce-MyAccount-content button[type="submit"]:hover,
 body.woocommerce-account .woocommerce-MyAccount-content input[type="submit"]:hover{ background: var(--mp-acento-fuerte); color: #FFFFFF; }
 
+/* Botones dentro de una tabla: separados entre sí (si el segundo baja de línea no queda pegado al primero).
+   En tarjetas manda el gap de la celda, y en móvil el de la fila, así que ahí no llevan margen. */
+body.woocommerce-account .woocommerce-MyAccount-content table tbody td .button{ margin: 3px 8px 3px 0; }
+body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td .button{ margin: 0; }
+@media (max-width: 600px){
+  body.woocommerce-account .woocommerce-MyAccount-content table tbody td .button{ margin: 0; }
+}
+
 /* ---------- Formularios ---------- */
 body.woocommerce-account .woocommerce-MyAccount-content input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
 body.woocommerce-account .woocommerce-MyAccount-content select,
@@ -318,10 +326,10 @@ body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody 
 body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody td > code{ flex-basis: 100%; }
 
 /* ---------- Escritorio: saludo y tarjetas de entrada ---------- */
-.mp-saludo{ margin: 0 0 28px; }
-.mp-tarjetas{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
-.mp-tarjetas li{ margin: 0; padding: 0; list-style: none; }
-.mp-tarjeta{
+body.woocommerce-account .mp-saludo{ margin: 0 0 28px; }
+body.woocommerce-account .mp-tarjetas{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
+body.woocommerce-account .mp-tarjetas li{ margin: 0; padding: 0; list-style: none; }
+body.woocommerce-account .mp-tarjeta{
   display: flex; align-items: center; justify-content: center; box-sizing: border-box;
   min-height: 111px; padding: 20px; text-align: center;
   border-radius: var(--mp-radio); background: var(--mp-tarjeta); border: 0;
@@ -332,23 +340,23 @@ body.woocommerce-account .woocommerce-MyAccount-content table.mp-tarjetas tbody 
 body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta,
 body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta:hover,
 body.woocommerce-account .woocommerce-MyAccount-content a.mp-tarjeta:focus{ text-decoration: none; color: var(--mp-texto); }
-.mp-tarjeta:hover, .mp-tarjeta:focus-visible{ box-shadow: none; }
-.mp-tarjeta:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 3px; }
-@media (max-width: 1000px){ .mp-tarjetas{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px){ .mp-tarjetas{ grid-template-columns: 1fr; } }
+body.woocommerce-account .mp-tarjeta:hover, body.woocommerce-account .mp-tarjeta:focus-visible{ box-shadow: none; }
+body.woocommerce-account .mp-tarjeta:focus-visible{ outline: 2px solid var(--mp-acento); outline-offset: 3px; }
+@media (max-width: 1000px){ body.woocommerce-account .mp-tarjetas{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px){ body.woocommerce-account .mp-tarjetas{ grid-template-columns: 1fr; } }
 
 /* ---------- Cambio de pestaña sin recargar ---------- */
-.mp-cargando{ position: fixed; top: 45vh; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; pointer-events: none; z-index: 10; transform: translateY(-50%); }
-.mp-puntos{ display: flex; gap: 10px; }
-.mp-puntos i{ width: 10px; height: 10px; border-radius: 50%; background: var(--mp-acento); animation: mp-punto 1.2s ease-in-out infinite; }
-.mp-puntos i:nth-child(2){ animation-delay: .15s; }
-.mp-puntos i:nth-child(3){ animation-delay: .3s; }
-.mp-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+body.woocommerce-account .mp-cargando{ position: fixed; top: 45vh; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; pointer-events: none; z-index: 10; transform: translateY(-50%); }
+body.woocommerce-account .mp-puntos{ display: flex; gap: 10px; }
+body.woocommerce-account .mp-puntos i{ width: 10px; height: 10px; border-radius: 50%; background: var(--mp-acento); animation: mp-punto 1.2s ease-in-out infinite; }
+body.woocommerce-account .mp-puntos i:nth-child(2){ animation-delay: .15s; }
+body.woocommerce-account .mp-puntos i:nth-child(3){ animation-delay: .3s; }
+body.woocommerce-account .mp-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @keyframes mp-punto{ 0%, 80%, 100%{ opacity: .25; transform: scale(.8); } 40%{ opacity: 1; transform: scale(1.15); } }
 body.woocommerce-account .woocommerce-MyAccount-content.mp-cambiando{ opacity: .5; pointer-events: none; transition: opacity .2s; }
 
 @media (prefers-reduced-motion: reduce){
-  .mp-lista li:not(.mp-grupo) a, .mp-movil li a, .mp-movil__flecha{ transition: none; }
-  .mp-puntos i{ animation: none; opacity: .6; }
-  .mp-tarjeta{ transition: none; }
+  body.woocommerce-account .mp-lista li:not(.mp-grupo) a, body.woocommerce-account .mp-movil li a, body.woocommerce-account .mp-movil__flecha{ transition: none; }
+  body.woocommerce-account .mp-puntos i{ animation: none; opacity: .6; }
+  body.woocommerce-account .mp-tarjeta{ transition: none; }
 }
