@@ -19,16 +19,17 @@
     });
   }
   /* ---------- tablas: si una tabla no cabe en su tarjeta (o queda muy apretada), pasa a tarjetas (.mp-tarjetas) ---------- */
+  var MP_ANCHO_TABLA = 900; // por debajo de este ancho útil (px) las tablas pasan a tarjetas
   function ajustarTablas() {
     [].forEach.call(document.querySelectorAll(CONTENIDO + ' table'), function (t) {
       if (t.querySelector('tfoot') || !t.querySelector('thead th')) { return; }
       var caja = t.closest(CONTENIDO), cs = getComputedStyle(caja);
       var ancho = caja.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       t.classList.remove('mp-tarjetas');
+      // Misma regla para todas las tablas (Pedidos, Reservas…), solo según el ancho de la caja, para que se vean igual en cada pantalla.
+      // Si una tabla desborda aunque haya sitio, pasa a tarjetas igualmente para no tener scroll horizontal.
       var desborda = t.offsetWidth > ancho + 1;
-      var apretada = [].some.call(t.querySelectorAll('tbody tr'), function (tr) { return tr.getBoundingClientRect().height > 150; });
-      var estrecha = ancho < 700; // en cajas estrechas todas las tablas (Pedidos, Reservas…) pasan a tarjetas, para que se vean igual
-      t.classList.toggle('mp-tarjetas', desborda || apretada || estrecha);
+      t.classList.toggle('mp-tarjetas', ancho < MP_ANCHO_TABLA || desborda);
     });
   }
   var temporizador;
