@@ -1,0 +1,93 @@
+# Mi portal (22MW). Plantilla de traducción; los textos originales están en español.
+# Licencia: GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Mi portal 1.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: mi-portal\n"
+
+#: includes/class-admin.php:21 includes/class-admin.php:86
+msgid "Mi portal"
+msgstr ""
+
+#: includes/class-admin.php:88
+msgid "Ajustes restaurados."
+msgstr ""
+
+#: includes/class-admin.php:90
+msgid ""
+"Ordena, oculta y renombra las pestañas de Mi cuenta. Arrastra las filas para "
+"cambiar el orden."
+msgstr ""
+
+#: includes/class-admin.php:91
+msgid ""
+"Ocultar una pestaña solo la quita del menú: quien conozca su dirección "
+"todavía puede abrirla."
+msgstr ""
+
+#: includes/class-admin.php:96
+msgid "Grupos del menú"
+msgstr ""
+
+#: includes/class-admin.php:97
+msgid ""
+"Cada grupo lleva un título sobre sus pestañas. Un grupo sin título se "
+"muestra sin encabezado y uno sin pestañas no se muestra."
+msgstr ""
+
+#. translators: %d: número de grupo
+#: includes/class-admin.php:101 includes/class-admin.php:120
+#, php-format
+msgid "Grupo %d"
+msgstr ""
+
+#: includes/class-admin.php:107
+msgid "Pestañas"
+msgstr ""
+
+#: includes/class-admin.php:109
+msgid "Visible"
+msgstr ""
+
+#: includes/class-admin.php:109
+msgid "Pestaña"
+msgstr ""
+
+#: includes/class-admin.php:109
+msgid "Nombre en el menú"
+msgstr ""
+
+#: includes/class-admin.php:109
+msgid "Grupo"
+msgstr ""
+
+#: includes/class-admin.php:113
+msgid "Arrastrar"
+msgstr ""
+
+#: includes/class-admin.php:129
+msgid "Guardar cambios"
+msgstr ""
+
+#: includes/class-admin.php:135
+msgid "Restaurar valores de fábrica"
+msgstr ""
+
+#: includes/class-ajustes.php:45 templates/navigation.php:38
+msgid "Mi cuenta"
+msgstr ""
+
+#: includes/class-ajustes.php:45
+msgid "Sesión"
+msgstr ""
+
+#: templates/navigation.php:22
+msgid "Páginas de la cuenta"
+msgstr ""

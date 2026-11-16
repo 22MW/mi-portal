@@ -57,6 +57,8 @@ class Mi_Portal_Admin
             ];
         }
 
+        Mi_Portal_Ajustes::registrar_cadenas($limpio);
+
         return $limpio;
     }
 
@@ -76,6 +78,7 @@ class Mi_Portal_Admin
             return;
         }
         $ajustes = Mi_Portal_Ajustes::obtener();
+        Mi_Portal_Ajustes::registrar_cadenas($ajustes); // los nombres ya guardados antes de la 1.2.2 pasan a WPML
         $filas = Mi_Portal_Ajustes::combinar(Mi_Portal_Ajustes::originales());
         $nombre = Mi_Portal_Ajustes::OPCION;
         ?>

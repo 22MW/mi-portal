@@ -21,7 +21,7 @@ class Mi_Portal_Menu
         $nuevos = [];
         foreach (Mi_Portal_Ajustes::combinar($items) as $endpoint => $fila) {
             if ($fila['visible']) {
-                $nuevos[$endpoint] = $fila['etiqueta'];
+                $nuevos[$endpoint] = $fila['etiqueta'] === $fila['original'] ? $fila['etiqueta'] : Mi_Portal_Ajustes::traducir($fila['etiqueta'], 'pestana_' . $endpoint);
             }
         }
 
@@ -48,7 +48,7 @@ class Mi_Portal_Menu
         $grupos = [];
         foreach ($items as $endpoint => $etiqueta) {
             $g = isset($filas[$endpoint]) ? $filas[$endpoint]['grupo'] : 'g1';
-            $grupos[$g]['titulo'] = isset($titulos[$g]) ? $titulos[$g] : '';
+            $grupos[$g]['titulo'] = isset($titulos[$g]) ? Mi_Portal_Ajustes::traducir($titulos[$g], 'grupo_' . $g) : '';
             $grupos[$g]['items'][$endpoint] = $etiqueta;
         }
         uksort($grupos, function ($a, $b) {

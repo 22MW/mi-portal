@@ -12,6 +12,33 @@ class Mi_Portal_Ajustes
     /** Evita que nuestro propio filtro actúe cuando pedimos las pestañas originales. */
     public static $sin_filtro = false;
 
+    /** Contexto de WPML (String Translation) para los nombres que se escriben en el panel. */
+    const CONTEXTO_WPML = 'Mi portal (ajustes)';
+
+    /**
+     * Traduce con WPML un nombre guardado en los ajustes (pestaña renombrada o título de grupo).
+     * Sin WPML no hay filtro y devuelve el mismo texto.
+     */
+    public static function traducir($texto, $nombre)
+    {
+        return '' === $texto ? $texto : apply_filters('wpml_translate_single_string', $texto, self::CONTEXTO_WPML, $nombre);
+    }
+
+    /** Da de alta en WPML los nombres escritos en el panel para que se puedan traducir. Sin WPML no hace nada. */
+    public static function registrar_cadenas(array $ajustes)
+    {
+        foreach ((array) ($ajustes['grupos'] ?? []) as $g => $titulo) {
+            if ('' !== $titulo) {
+                do_action('wpml_register_single_string', self::CONTEXTO_WPML, 'grupo_' . $g, $titulo);
+            }
+        }
+        foreach ((array) ($ajustes['items'] ?? []) as $endpoint => $a) {
+            if (! empty($a['etiqueta'])) {
+                do_action('wpml_register_single_string', self::CONTEXTO_WPML, 'pestana_' . $endpoint, $a['etiqueta']);
+            }
+        }
+    }
+
     public static function por_defecto()
     {
         return [
