@@ -3,6 +3,7 @@
 Plugin de WordPress (capa de `/mi-cuenta/` de WooCommerce). Repositorio propio: https://github.com/22MW/mi-portal (separado del git del proyecto 22mw). Idioma: español.
 
 ## Ramas
+- **Siempre se trabaja en `devMishaPortal`. `main` es solo para lo limpio y terminado: nunca se edita ni se deja puesto.** Tras pasar algo a `main` (merge y push), volver de inmediato a `devMishaPortal` (`git switch devMishaPortal`) y comprobar con `git branch --show-current` antes de tocar nada.
 - `devMishaPortal`: trabajo. `main`: estable. Se trabaja y se commitea en `devMishaPortal`, se sube, y se pasa a `main` solo cuando el usuario lo pide.
 - Un único commit por cambio. Mensajes: `tipo(mi-portal): descripción`. Sin secretos en el código ni en los commits.
 
